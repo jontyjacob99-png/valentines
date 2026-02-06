@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubu Valentine Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- SCENE 0: Start Screen -->
+    <div id="scene0" class="scene active">
+        <div class="start-button">Click here, Bubu ❤️</div>
+    </div>
+
+    <!-- SCENE 1: Long Distance Scene -->
+    <div id="scene1" class="scene">
+        <div class="clouds-bg"></div>
+        <div class="globe india">
+            <div class="continent india-shape"></div>
+            <span class="globe-label">INDIA</span>
+        </div>
+        <div class="globe usa">
+            <div class="continent usa-shape"></div>
+            <span class="globe-label">USA</span>
+        </div>
+        <img class="char-sprite her" src="assets/faces/her.png" alt="Her">
+        <img class="char-sprite me" src="assets/faces/me.png" alt="Me">
+        <div class="heart">❤️</div>
+        <div class="text-overlay"></div>
+    </div>
+
+    <!-- SCENE 2: Love Background Scene -->
+    <div id="scene2" class="scene">
+        <div class="love-bg"></div>
+        <div class="text-overlay"></div>
+    </div>
+
+    <!-- SCENE 3: Valentine Question -->
+    <div id="scene3" class="scene">
+        <div class="question">WILL YOU BE MY VALENTINE CHAKARE?</div>
+        <div class="buttons">
+            <button class="yes-btn">YES</button>
+            <button class="yes-btn">YES</button>
+        </div>
+    </div>
+
+    <!-- SCENE 4: Final Collage -->
+    <div id="scene4" class="scene">
+        <div class="final-message">HAPPY VALENTINES DAY BUBU 💛😘</div>
+        <div class="collage-grid"></div>
+    </div>
+
+    <!-- Confetti Layer -->
+    <div id="confettiLayer"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
