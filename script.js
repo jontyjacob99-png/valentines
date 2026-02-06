@@ -133,4 +133,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // SCENE 4: Final Collage
     const collageGrid = document.querySelector('.collage-grid');
     CONFIG.collageImages.forEach((src, index) => {
-       
+        const item = document.createElement('div');
+        item.className = 'collage-item';
+        // Try to load image; if fails, show placeholder
+        const img = new Image();
+        img.src = src;
+        img.onload = () => item.appendChild(img);
+        img.onerror = () => {
+            item.textContent = `Placeholder ${index + 1}`;
+        };
+        collageGrid.appendChild(item);
+    });
+});
