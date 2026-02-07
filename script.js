@@ -42,8 +42,13 @@ const scenes = document.querySelectorAll('.scene');
 
 // Utility: Add event listener for pointerdown and click (with immediate response)
 function addInteraction(element, callback) {
+    if (!element) {
+        console.error('Element not found for addInteraction');
+        return;
+    }
     const handler = (e) => {
         e.preventDefault();  // Prevent default to make it snappier
+        console.log('Interaction triggered on element:', element.className);
         callback();
     };
     element.addEventListener('pointerdown', handler);
@@ -52,7 +57,7 @@ function addInteraction(element, callback) {
 
 // Scene transitions
 function switchScene(toScene) {
-    console.log(`Switching from Scene ${currentScene} to Scene ${toScene}`);  // Debug log
+    console.log(`Switching from Scene ${currentScene} to Scene ${toScene}`);
     scenes[currentScene].classList.add('fade-out');
     setTimeout(() => {
         scenes[currentScene].classList.remove('active', 'fade-out');
@@ -67,7 +72,7 @@ function switchScene(toScene) {
 
 // Confetti function (no external libs)
 function launchConfetti(numPieces, duration) {
-    console.log('Launching confetti');  // Debug log
+    console.log('Launching confetti');
     const layer = document.getElementById('confettiLayer');
     for (let i = 0; i < numPieces; i++) {
         const piece = document.createElement('div');
@@ -84,7 +89,7 @@ function launchConfetti(numPieces, duration) {
 // Scene handlers: Define logic for each scene
 const sceneHandlers = {
     1: () => {  // SCENE 1: Long Distance
-        console.log('Scene 1 activated: Starting animations');  // Debug log
+        console.log('Scene 1 activated: Starting animations');
         const scene1Text = document.querySelector('#scene1 .text-overlay');
         const indiaGlobe = document.querySelector('.globe.india');
         const usaGlobe = document.querySelector('.globe.usa');
@@ -112,7 +117,7 @@ const sceneHandlers = {
         }, CONFIG.timings.scene1Text1Duration);
     },
     2: () => {  // SCENE 2: Love Background
-        console.log('Scene 2 activated: Starting text sequence');  // Debug log
+        console.log('Scene 2 activated: Starting text sequence');
         const scene2Text = document.querySelector('#scene2 .text-overlay');
         scene2Text.textContent = CONFIG.textLines.scene2Text1;
         scene2Text.style.opacity = 1;
@@ -129,10 +134,10 @@ const sceneHandlers = {
         }, CONFIG.timings.scene2Text1Duration);
     },
     3: () => {  // SCENE 3: Question (buttons already set up globally)
-        console.log('Scene 3 activated: Waiting for YES click');  // Debug log
+        console.log('Scene 3 activated: Waiting for YES click');
     },
     4: () => {  // SCENE 4: Final Collage
-        console.log('Scene 4 activated: Loading collage');  // Debug log
+        console.log('Scene 4 activated: Loading collage');
         const collageGrid = document.querySelector('.collage-grid');
         CONFIG.collageImages.forEach((src, index) => {
             const item = document.createElement('div');
@@ -150,17 +155,23 @@ const sceneHandlers = {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Page loaded, initializing...');  // Debug log
-    // SCENE 0: Start button
-    addInteraction(document.querySelector('.start-button'), () => {
-        console.log('Start button clicked');  // Debug log
-        switchScene(1);
-    });
+    console.log('Page loaded, initializing...');
+    const startButton = document.querySelector('.start-button');
+    console.log('Start button element:', startButton);  // Check if it exists
+    if (startButton) {
+        console.log('Start button element found, adding interaction');
+        addInteraction(startButton, () => {
+            console.log('Start button clicked');
+            switchScene(1);
+        });
+    } else {
+        console.error('Start button not found!');
+    }
 
     // SCENE 3: YES buttons (set up globally since they're always there)
     document.querySelectorAll('.yes-btn').forEach(btn => {
         addInteraction(btn, () => {
-            console.log('YES button clicked');  // Debug log
+            console.log('YES button clicked');
             launchConfetti(120, 3000);
             switchScene(4);
         });
@@ -168,4 +179,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Start with Scene 0 active
     scenes[0].classList.add('active');
+    console.log('Initialization complete');
 });
