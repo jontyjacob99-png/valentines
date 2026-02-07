@@ -40,7 +40,7 @@ const CONFIG = {
 let currentScene = 0;
 const scenes = document.querySelectorAll('.scene');
 
-// Utility: Add event listener for pointerdown and click (with immediate response)
+// Utility: Add event listener for pointerdown, click, and touchstart (mobile-friendly)
 function addInteraction(element, callback) {
     if (!element) {
         console.error('Element not found for addInteraction');
@@ -53,6 +53,7 @@ function addInteraction(element, callback) {
     };
     element.addEventListener('pointerdown', handler);
     element.addEventListener('click', handler);
+    element.addEventListener('touchstart', handler);  // Added for mobile taps
 }
 
 // Scene transitions
@@ -180,4 +181,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start with Scene 0 active
     scenes[0].classList.add('active');
     console.log('Initialization complete');
+    // Debug: Manually trigger Scene 1 by typing switchScene(1) in console if button fails
 });
