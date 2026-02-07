@@ -48,7 +48,9 @@ body {
     background: none;  /* Remove default button background */
     padding: 1rem 2rem;
     border-radius: 10px;
+    cursor: pointer !important;  /* Force pointer cursor */
     transition: background 0.3s;
+    pointer-events: auto;  /* Ensure clicks are allowed */
 }
 
 .start-button:hover {
