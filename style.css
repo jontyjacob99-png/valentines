@@ -44,16 +44,15 @@ body {
 .start-button {
     font-size: 2rem;
     color: #fff;
-    cursor: pointer;
+    border: none;  /* Remove default button border */
+    background: none;  /* Remove default button background */
     padding: 1rem 2rem;
-    border: 2px solid #fff;
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.1);
     transition: background 0.3s;
 }
 
 .start-button:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);  /* Subtle hover effect */
 }
 
 /* SCENE 1: Clouds and Globes */
